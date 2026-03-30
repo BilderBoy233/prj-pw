@@ -5,15 +5,15 @@ form{
 }
 
 input[type="text"]{
-    width: 100px;
+    width: 200px;
 }
 
 input[type="date"] {
-    width: 150px;
+    width: 225px;
 }
 
 input[type="file"] {
-    width: 200px;
+    width: 300px;
 }
 
 button[id="enviarBtn"] {
@@ -24,4 +24,39 @@ button[id="enviarBtn"] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+nav{
+    background: #1858cd;
+}
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 1;
+    letter-spacing: 2px;
+    padding-left: 10px;
+}
+
+nav li {
+    font-size: 20px;
+    padding: 5px;
+}
+nav li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+}
+body{
+    background-color: #e6e6e6;
+}
+label{
+      font-weight: bold;
 }
