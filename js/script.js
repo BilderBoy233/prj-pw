@@ -2,6 +2,8 @@
 const form = document.querySelector('form');
 const resultado = document.getElementById('resultado');
 
+
+
 form.addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio tradicional
 
