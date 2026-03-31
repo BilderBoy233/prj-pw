@@ -37,10 +37,9 @@
         <input type="date" id="date" name="date">
         
         <label for="file">Sua foto engraçada: </label>
-        <input type="file" id="file" name="file">
+        <input type="file" name="file" accept="image/*" required>
         
         <!-- <button type="submit" id="botao" name="botao">ENVIAR!!!</button> -->
-        
         
         <button type="submit" id="enviarBtn">Enviar</button>
     </form>
