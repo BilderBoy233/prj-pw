@@ -18,19 +18,38 @@
     </nav>
                 <div class="center">
 
+                    <div class="center">
         <?php
     // ve se vc consegue colocar pra mostrar a imagem, se for imagem o arquivo
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        echo "<strong>Nome:</strong> " . htmlspecialchars($_POST['nome']) . "<br>";
-        echo "<strong>Email:</strong> " . htmlspecialchars($_POST['email']) . "<br>";
-        echo "<strong>Nascimento:</strong> " . htmlspecialchars($_POST['date']) . "<br>";
-        if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-            echo "<strong>Arquivo enviado:</strong> " . htmlspecialchars($_FILES['file']['name']);
-            } else {
-                echo "<strong>Arquivo não enviado.</strong>";
-                }
-                }
-                ?>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    echo "<strong>Nome:</strong> " . htmlspecialchars($_POST['nome']) . "<br>";
+    echo "<strong>Email:</strong> " . htmlspecialchars($_POST['email']) . "<br>";
+    echo "<strong>Nascimento:</strong> " . htmlspecialchars($_POST['date']) . "<br>";
+
+    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['file']['tmp_name'];
+        $fileName = $_FILES['file']['name'];
+        $fileType = $_FILES['file']['type'];
+
+        // 1. Verifica se o arquivo é uma imagem
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        
+        if (in_array($fileType, $allowedTypes)) {
+            // Para exibir a imagem imediatamente sem mover de pasta (usando Base64)
+            $imageData = base64_encode(file_get_contents($fileTmpPath));
+            $src = 'data:' . $fileType . ';base64,' . $imageData;
+
+            echo "<strong>Arquivo enviado:</strong> " . htmlspecialchars($fileName) . "<br>";
+            echo "<img src='$src' alt='Imagem Enviada' style='max-width: 300px; margin-top: 10px; border-radius: 8px;'>";
+        } else {
+            echo "<strong>Arquivo enviado:</strong> " . htmlspecialchars($fileName) . " (Não é uma imagem válida).";
+        }
+    } else {
+        echo "<strong>Arquivo não enviado.</strong>";
+    }
+}
+?>
+</div>
                 </div>
             <div id="resultado"></div>
                 <script src="js/script.js"></script>
